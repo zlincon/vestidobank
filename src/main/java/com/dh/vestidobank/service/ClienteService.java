@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.dh.vestidobank.exception.ArgumentNotValidException;
@@ -14,7 +15,7 @@ import com.dh.vestidobank.model.entity.Cliente;
 import com.dh.vestidobank.model.entity.Conta;
 import com.dh.vestidobank.model.entity.Gerente;
 import com.dh.vestidobank.repository.ClienteRepository;
-
+import java.util.List;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -54,6 +55,10 @@ public class ClienteService {
 		return this.clienteRepository.findById(id)
 				.orElseThrow( () -> new  ObjectNotFoundException("Cliente de id " + id + " não encontrado"));
 	
+	}
+
+	public List<Cliente> findAll(){
+		return this.clienteRepository.findAll();
 	}
 	
 	public void delete(Long id) {

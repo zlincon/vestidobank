@@ -1,5 +1,6 @@
 package com.dh.vestidobank.model.dto.create;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @AllArgsConstructor
-public class ClienteCreateDTO {
+public class GerenteCreateDTO {
 
     @NotNull
     @Size(min =6, max = 60)
@@ -29,13 +30,9 @@ public class ClienteCreateDTO {
     @NotNull
     @Size(min = 8)
     private String senha;
-
-    @NotNull
-    private int tipoConta;
-    @NotNull
-    private Long gerenteId;
-
-    @NotNull
-    private Long numeroConta;
+    
+	@NotNull
+	@Email
+	private String email;
 
 }

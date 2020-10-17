@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.dh.vestidobank.model.dto.create.GerenteCreateDTO;
+import com.dh.vestidobank.model.entity.Cliente;
 import com.dh.vestidobank.model.entity.Gerente;
+import com.dh.vestidobank.service.ClienteService;
 import com.dh.vestidobank.service.GerenteService;
 
 import lombok.AllArgsConstructor;
@@ -27,10 +30,10 @@ import lombok.AllArgsConstructor;
 public class GerenteController {
 	
 	private final GerenteService gerenteService;
-	
+	private final ClienteService clienteService;
 	
 	@PostMapping
-	public ResponseEntity<Void> create(@Valid @RequestBody Gerente gerente){
+	public ResponseEntity<Void> create(@Valid @RequestBody GerenteCreateDTO gerente){
 		
 		Gerente gerenteCriado = this.gerenteService.create(gerente);
 		
@@ -60,6 +63,16 @@ public class GerenteController {
 		
 		return ResponseEntity.ok(gerente);
 	}
+	
+	
+	@GetMapping("/{id}/clientesInativos")
+	public ResponseEntity<List<Cliente>> findAllClienteInativos(@PathVariable Long id){
+		List<Cliente> clientes = this.clienteService.findByGerenteAndInativo(Gerente.builder().id(id).build());
+		
+		return ResponseEntity.ok(clientes);
+
+	}
+	
 	
 	
 	@GetMapping

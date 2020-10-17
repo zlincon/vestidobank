@@ -58,6 +58,15 @@ public class Conta implements Serializable {
 	
 	
 	
+	public boolean valorDisponivelSaque(double valor) {
+		return this.saldo+this.limiteEspecial >= valor;
+	}
 	
+	public void sacar(double valor) {
+		this.saldo -= valor;
+	}
 	
+	public void depositar(double valor) {
+		this.saldo += valor;
+	}
 }

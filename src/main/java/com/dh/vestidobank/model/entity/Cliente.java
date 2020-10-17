@@ -53,5 +53,10 @@ public class Cliente {
 	@JsonIgnore
 	private Gerente gerente;
 	
+	private boolean ativo;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id", nullable = false)
+	@JsonIgnore
+	private Usuario usuario;
 }

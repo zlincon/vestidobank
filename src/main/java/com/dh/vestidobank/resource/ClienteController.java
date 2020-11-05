@@ -33,7 +33,7 @@ public class ClienteController {
     private final ClienteService clienteService;
     
     
-    
+  
     @PatchMapping("/{id}/alterarLimite")
     public ResponseEntity<Void> ativar(@PathVariable Long id, @Valid @RequestBody ValorOperacao valor){
     	this.clienteService.alterarLimite(id,valor);
